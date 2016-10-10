@@ -1,6 +1,6 @@
 from crawlers.UrlSearcher import UrlSearcher
 
-base_url = 'http://tieba.baidu.com/f?kw=%C4%E6%D7%AA%BC%E0%B6%BD&fr=ala0&tpl=5'
+base_url = 'http://tieba.baidu.com/f?ie=utf-8&kw=%E9%80%86%E8%BD%AC%E7%9B%91%E7%9D%A3&fr=search'
 
-crawler = UrlSearcher('www.baidu.com', 100, 100, 100)
+crawler = UrlSearcher(base_url, 100, 100, 740)
 crawler.search_valid_urls()
