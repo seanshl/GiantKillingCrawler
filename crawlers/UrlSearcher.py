@@ -12,20 +12,24 @@ class UrlSearcher:
             self.max_posts = max_posts
         else:
             self.max_posts = int((math.ceil(max_posts / 100) + 1) * 100)
-        print ('UrlSearcher initialized, set the max posts to be %s' % self.max_posts)
-
-
-
-    def search_valid_urls(self):
-        print ('Begin searching on the basic url on first 100 pages')
         try:
             request = urllib2.Request(self.base_url)
             response = urllib2.urlopen(request)
-
+            print ('UrlSearcher initialized, set the max posts to be %s' % self.max_posts)
         except urllib2.URLError, e:
             if hasattr(e,"reason"):
                 print u"connection error", e.reason
                 return None
+
+    def search_valid_urls(self):
+        pn = 0
+        while (pn <= self.max_posts):
+            print ('Begin searching on the basic url on first 100 pages')
+            url = self.base_url + '&pn=' + pn
+            request = urllib2.Request(url)
+            response = urllib2.urlopen(request)
+
+            pn += 50
         print ('End search on the basic url...')
 
 
