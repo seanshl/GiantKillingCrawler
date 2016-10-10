@@ -1,6 +1,7 @@
-import urllib
+# coding=utf-8
 import urllib2
 import math
+import re
 
 class UrlSearcher:
     def __init__(self, base_url, begin_number, end_number, max_posts):
@@ -24,12 +25,17 @@ class UrlSearcher:
     def search_valid_urls(self):
         pn = 0
         while (pn <= self.max_posts):
-            print ('Begin searching on the basic url on first 100 pages')
-            url = self.base_url + '&pn=' + pn
+            print ('Begin searching from post number: ' + str(pn))
+            url = self.base_url + '&pn=' + str(pn)
             request = urllib2.Request(url)
             response = urllib2.urlopen(request)
+            pattern = self.__build_pattern()
+            result = re.search('<a .*>', response.read())
+            print result.group(1).strip()
 
             pn += 50
         print ('End search on the basic url...')
 
-
+    def __build_pattern(self):
+        pattern = re.compile('<a href=".*</a>', re.S)
+        print pattern
