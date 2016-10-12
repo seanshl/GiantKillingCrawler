@@ -38,5 +38,5 @@ class UrlSearcher:
         print ('End search on the basic url...')
 
     def __build_pattern(self):
-        pattern = '<a href="/p.*>'
+        pattern = '<a href="/p/\d+" title=".*贴吧汉化.*>'
         return pattern
