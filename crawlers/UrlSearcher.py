@@ -28,6 +28,9 @@ class UrlSearcher:
         def search_valid_urls(self):
             pn = 0
             while pn <= self.max_posts:
+                if (self.set.__len__() == 0):
+                    print('All targets found, quit early')
+                    break
                 print ('Begin searching from post number: ' + str(pn))
 
                 url = self.base_url + '&pn=' + str(pn)
