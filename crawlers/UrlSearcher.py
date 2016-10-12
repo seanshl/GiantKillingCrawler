@@ -30,12 +30,13 @@ class UrlSearcher:
             request = urllib2.Request(url)
             response = urllib2.urlopen(request)
             pattern = self.__build_pattern()
-            result = re.search('<a .*>', response.read())
-            print result.group(1).strip()
+            result = re.search(pattern, response.read())
+            if (result):
+                print result.group()
 
             pn += 50
         print ('End search on the basic url...')
 
     def __build_pattern(self):
-        pattern = re.compile('<a href=".*</a>', re.S)
-        print pattern
+        pattern = '<a href="/p.*>'
+        return pattern
