@@ -9,6 +9,8 @@ class UrlSearcher:
             self.begin_number = begin_number
             self.end_number = end_number
             self.number_set = set()
+            self.url_set = list()
+            self.pattern = r'<a href="/p/\d+" title=".*贴吧汉化.*逆转监督\s*\d+.*>'
             for x in range(begin_number, end_number + 1, 1):
                 self.number_set.add(x)
             print 'Size: ' + str(self.number_set.__len__())
@@ -36,7 +38,7 @@ class UrlSearcher:
                 url = self.base_url + '&pn=' + str(pn)
                 request = urllib2.Request(url)
                 response = urllib2.urlopen(request)
-                pattern = self.__build_pattern()
+                pattern = self.pattern
 
                 result = re.findall(pattern, response.read())
 
@@ -45,17 +47,19 @@ class UrlSearcher:
                         title = re.search('逆转监督\s*\d+', url)
                         num = re.search('\d+', title.group()).group()
                         if int(num) in self.number_set:
-                            print url
+                            post_url_suffix = re.search('/p/\d+', url).group()
+                            self.url_set.append(post_url_suffix)
                             print 'Found number: ' + str(num)
                             self.number_set.remove(int(num))
 
                 pn += 50
+
             print ('End search on the basic url...')
             if self.number_set.__len__() == 0:
                 print 'Found all targets'
             else:
                 for number in self.number_set:
                     print 'Miss number' + str(number)
-        def __build_pattern(self):
-            pattern = r'<a href="/p/\d+" title=".*贴吧汉化.*逆转监督\s*\d+.*>'
-            return pattern
+
+            sorted(self.url_set)
+            return self.url_set
