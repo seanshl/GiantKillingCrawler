@@ -9,7 +9,7 @@ class UrlSearcher:
             self.begin_number = begin_number
             self.end_number = end_number
             self.number_set = set()
-            self.url_set = list()
+            self.url_dict = dict()
             self.pattern = r'<a href="/p/\d+" title=".*贴吧汉化.*逆转监督\s*\d+.*>'
             for x in range(begin_number, end_number + 1, 1):
                 self.number_set.add(x)
@@ -25,7 +25,6 @@ class UrlSearcher:
             except urllib2.URLError, e:
                 if hasattr(e,"reason"):
                     print u"connection error", e.reason
-                    return None
 
         def search_valid_urls(self):
             pn = 0
@@ -48,7 +47,7 @@ class UrlSearcher:
                         num = re.search('\d+', title.group()).group()
                         if int(num) in self.number_set:
                             post_url_suffix = re.search('/p/\d+', url).group()
-                            self.url_set.append(post_url_suffix)
+                            self.url_dict[num] = post_url_suffix
                             print 'Found number: ' + str(num)
                             self.number_set.remove(int(num))
 
@@ -61,5 +60,4 @@ class UrlSearcher:
                 for number in self.number_set:
                     print 'Miss number' + str(number)
 
-            sorted(self.url_set)
-            return self.url_set
+            return self.url_dict
