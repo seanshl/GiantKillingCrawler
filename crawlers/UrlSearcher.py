@@ -8,10 +8,10 @@ class UrlSearcher:
             self.base_url = base_url
             self.begin_number = begin_number
             self.end_number = end_number
-            self.set = set()
+            self.number_set = set()
             for x in range(begin_number, end_number + 1, 1):
-                self.set.add(x)
-            print 'Size: ' + str(self.set.__len__())
+                self.number_set.add(x)
+            print 'Size: ' + str(self.number_set.__len__())
             if max_posts < 100:
                 self.max_posts = max_posts
             else:
@@ -28,7 +28,7 @@ class UrlSearcher:
         def search_valid_urls(self):
             pn = 0
             while pn <= self.max_posts:
-                if (self.set.__len__() == 0):
+                if (self.number_set.__len__() == 0):
                     print('All targets found, quit early')
                     break
                 print ('Begin searching from post number: ' + str(pn))
@@ -44,17 +44,17 @@ class UrlSearcher:
                     for url in result:
                         title = re.search('逆转监督\s*\d+', url)
                         num = re.search('\d+', title.group()).group()
-                        if int(num) in self.set:
+                        if int(num) in self.number_set:
                             print url
                             print 'Found number: ' + str(num)
-                            self.set.remove(int(num))
+                            self.number_set.remove(int(num))
 
                 pn += 50
             print ('End search on the basic url...')
-            if self.set.__len__() == 0:
+            if self.number_set.__len__() == 0:
                 print 'Found all targets'
             else:
-                for number in set:
+                for number in self.number_set:
                     print 'Miss number' + str(number)
         def __build_pattern(self):
             pattern = r'<a href="/p/\d+" title=".*贴吧汉化.*逆转监督\s*\d+.*>'
