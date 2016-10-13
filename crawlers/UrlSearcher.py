@@ -28,8 +28,8 @@ class UrlSearcher:
 
         def search_valid_urls(self):
             pn = 0
-            while pn <= self.max_posts:
-                if (self.number_set.__len__() == 0):
+            while pn < self.max_posts:
+                if self.number_set.__len__() == 0:
                     print('All targets found, quit early')
                     break
                 print ('Begin searching from post number: ' + str(pn))
