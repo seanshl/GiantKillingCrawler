@@ -1,5 +1,4 @@
 import urllib2
-import math
 import re
 
 class ComicImageCrawler:
