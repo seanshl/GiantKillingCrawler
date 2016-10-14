@@ -20,11 +20,11 @@ class ComicImageCrawler:
         raw_set = re.findall(self.__search_pattern, response.read())
 
         if (raw_set):
-            img_list = self.__flat_set(raw_set)
             print 'Analyze comic number: ' + str(comic_number) + '...'
+            img_list = self.__flat_set(raw_set)
+            print str(img_list.__len__()) + ' images found, begin downloading...'
             for img_url in img_list:
                 print img_url
-                
     def __flat_set(self, raw_set):
         img_list = list()
         for raw_url in raw_set:

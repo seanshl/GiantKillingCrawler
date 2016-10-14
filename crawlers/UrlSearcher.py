@@ -48,16 +48,16 @@ class UrlSearcher:
                         if int(num) in self.number_set:
                             post_url_suffix = re.search('/p/\d+', url).group()
                             self.url_dict[num] = post_url_suffix
-                            print 'Found number: ' + str(num)
+                            print 'Found comic no.: ' + str(num)
                             self.number_set.remove(int(num))
 
                 pn += 50
 
-            print ('End search on the basic url...')
+            print ('End searching on basic url...')
             if self.number_set.__len__() == 0:
                 print 'Found all targets'
             else:
                 for number in self.number_set:
-                    print 'Miss number' + str(number)
+                    print 'Miss comic no.' + str(number)
 
             return self.url_dict
