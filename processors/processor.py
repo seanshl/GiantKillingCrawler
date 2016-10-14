@@ -10,5 +10,5 @@ base_url = 'http://tieba.baidu.com/f?ie=utf-8&kw=%E9%80%86%E8%BD%AC%E7%9B%91%E7%
 url_searcher = UrlSearcher(base_url, begin_number, end_number, max_post)
 post_urls = url_searcher.search_valid_urls()
 
-post_crawler = ComicImageCrawler(post_urls)
+post_crawler = ComicImageCrawler(post_urls, 'C:\\GiantKilling')
 post_crawler.search_all()

@@ -1,17 +1,19 @@
 import urllib2
 import re
+from ComicDownloader import ComicDownloader
 
 class ComicImageCrawler:
-    def __init__(self, post_urls):
+    def __init__(self, post_urls, basic_path):
         self.__post_urls = dict(post_urls)
         self.BASE_URL = 'http://tieba.baidu.com'
         self.__search_pattern = r'<img class="BDE_Image".*width="\d+".*height="\d+".*src="http://imgsrc.baidu.com/forum/.*.jpg"\s*>'
+        self.__basic_path = basic_path
 
     def search_all(self):
         url_suffix = self.__post_urls['405']
         self.__search_one_post(url_suffix, 405)
 
-    def __search_one_post(self, url_suffix, comic_number):
+    def __search_one_post(self, url_suffix, comic_nbr):
         url = self.BASE_URL + url_suffix
         print 'Begin crawling on 405'
         request = urllib2.Request(url)
@@ -19,11 +21,15 @@ class ComicImageCrawler:
         raw_set = re.findall(self.__search_pattern, response.read())
 
         if (raw_set):
-            print 'Analyze comic number: ' + str(comic_number) + '...'
+            print 'Analyze comic number: ' + str(comic_nbr) + '...'
             img_list = self.__flat_set(raw_set)
             print str(img_list.__len__()) + ' images found, begin downloading...'
-            for img_url in img_list:
-                print img_url
+            self.__download(img_list, comic_nbr)
+
+    def __download(self, img_list, comic_nbr):
+        downloader = ComicDownloader(img_list, comic_nbr, self.__basic_path)
+        downloader.download()
+
     def __flat_set(self, raw_set):
         img_list = list()
         for raw_url in raw_set:
