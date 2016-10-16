@@ -12,7 +12,7 @@ class ComicDownloader:
             os.mkdir(self.__basic_path)
 
     def download(self):
-        path = self.__basic_path + '/' + str(self.__comic_nbr) + '话/'
+        path = self.__basic_path + '/逆转监督_第' + str(self.__comic_nbr) + '话/'
         if not os.path.exists(path):
             os.mkdir(path)
         count = 1

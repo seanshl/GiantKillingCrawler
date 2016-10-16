@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ad1d26a-49d2-4220-80ed-ad749dfa8eda" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crawlers/ComicImageCrawler.py" afterPath="$PROJECT_DIR$/crawlers/ComicImageCrawler.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crawlers/ComicDownloader.py" afterPath="$PROJECT_DIR$/crawlers/ComicDownloader.py" />
     </list>
     <ignored path="GiantKillingCrawler.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,8 +57,8 @@
       <file leaf-file-name="ComicDownloader.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/crawlers/ComicDownloader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+            <state relative-caret-position="136">
+              <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
               <folding>
                 <element signature="e#15#29#0" expanded="true" />
               </folding>
@@ -88,8 +88,8 @@
         <option value="$PROJECT_DIR$/crawlers/__init__.py" />
         <option value="$PROJECT_DIR$/crawlers/UrlSearcher.py" />
         <option value="$PROJECT_DIR$/processors/processor.py" />
-        <option value="$PROJECT_DIR$/crawlers/ComicDownloader.py" />
         <option value="$PROJECT_DIR$/crawlers/ComicImageCrawler.py" />
+        <option value="$PROJECT_DIR$/crawlers/ComicDownloader.py" />
       </list>
     </option>
   </component>
@@ -630,8 +630,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/crawlers/ComicDownloader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+        <state relative-caret-position="136">
+          <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
           <folding>
             <element signature="e#15#29#0" expanded="true" />
           </folding>
