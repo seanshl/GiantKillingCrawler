@@ -7,6 +7,7 @@ class ComicImageCrawler:
         self.__post_urls = dict(post_urls)
         self.BASE_URL = 'http://tieba.baidu.com'
         self.__search_pattern = r'<img class="BDE_Image".*width="\d+".*height="\d+".*src="http://imgsrc.baidu.com/forum/.*.jpg"\s*>'
+        self.__bak_search_pattern = r'<img class="BDE_Image".*src="http://imgsrc.baidu.com/forum/.*.jpg".*>'
         self.__basic_path = basic_path
 
     def search_all(self):
@@ -19,7 +20,13 @@ class ComicImageCrawler:
         print 'Begin crawling on ' + comic_nbr
         request = urllib2.Request(url)
         response = urllib2.urlopen(request)
-        raw_set = re.findall(self.__search_pattern, response.read())
+        content = response.read()
+        raw_set = re.findall(self.__search_pattern, content)
+
+        if raw_set.__len__() == 0:
+            print 'begin to use backup search pattern'
+            raw_set = re.findall(self.__bak_search_pattern, content)
+            print raw_set.__len__()
 
         if (raw_set):
             print 'Analyze comic number: ' + str(comic_nbr) + '...'

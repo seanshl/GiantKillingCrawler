@@ -1,9 +1,9 @@
 from crawlers.UrlSearcher import UrlSearcher
 from crawlers.ComicImageCrawler import ComicImageCrawler
 
-begin_number = 400
+begin_number = 406
 end_number = 406
-max_post = 50
+max_post = 300
 
 base_url = 'http://tieba.baidu.com/f?ie=utf-8&kw=%E9%80%86%E8%BD%AC%E7%9B%91%E7%9D%A3&fr=search'
 
