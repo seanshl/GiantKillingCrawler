@@ -10,12 +10,13 @@ class ComicImageCrawler:
         self.__basic_path = basic_path
 
     def search_all(self):
-        url_suffix = self.__post_urls['405']
-        self.__search_one_post(url_suffix, 405)
+        for nbr in self.__post_urls.keys():
+            url_suffix = self.__post_urls[str(nbr)]
+            self.__search_one_post(url_suffix, nbr)
 
     def __search_one_post(self, url_suffix, comic_nbr):
         url = self.BASE_URL + url_suffix
-        print 'Begin crawling on 405'
+        print 'Begin crawling on ' + comic_nbr
         request = urllib2.Request(url)
         response = urllib2.urlopen(request)
         raw_set = re.findall(self.__search_pattern, response.read())
