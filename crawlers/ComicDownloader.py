@@ -12,13 +12,13 @@ class ComicDownloader:
             os.mkdir(self.__basic_path)
 
     def download(self):
-        path = self.__basic_path + '/' + str(self.__comic_nbr) + '话'
+        path = self.__basic_path + '/' + str(self.__comic_nbr) + '话/'
         if not os.path.exists(path):
             os.mkdir(path)
         count = 1
 
         for img_url in self.__img_list:
-            filename = str(count) + '.jpg'
+            filename = path + str(count) + '.jpg'
             print 'downloading ' + filename + '...'
             self.__save_img(filename, img_url)
             count += 1
@@ -28,6 +28,7 @@ class ComicDownloader:
         response = urllib2.urlopen(img_url)
         data = response.read()
         f = open(filename, 'wb')
+        f.write(data)
         f.close()
 
 
